@@ -71,8 +71,8 @@
 #let main-font = (
   // sudo apt install fonts-noto-cjkで入る
   "Noto Serif CJK JP",
-  "Charter",
-  "Source Han Serif SC",
+  // "Charter",
+  // "Source Han Serif SC",
   // "Source Han Serif TC",
   // shiroa's embedded font
   "Libertinus Serif",

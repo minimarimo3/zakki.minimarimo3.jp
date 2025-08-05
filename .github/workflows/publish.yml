@@ -9,6 +9,10 @@ permissions:
   pages: write  # GitHub Pagesへの書き込み権限
   id-token: write  # OIDCトークンの権限（`deploy-pages`用）
 
+env:
+  CARGO_TOOLS: |
+    shiroa
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,6 +26,24 @@ jobs:
           # https://docs.github.com/ja/actions/using-github-hosted-runners/using-github-hosted-runners/customizing-github-hosted-runners#:~:text=%E5%B8%B8%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84
           sudo apt update
           sudo apt install -y fonts-noto-cjk
+
+      # 実際に使われるRustのバージョンを取得して、後のステップで使えるようにする
+      - name: Rustのバージョンを取得
+        id: rustc-version
+        run: echo "version=$(rustc --version)" >> $GITHUB_OUTPUT
+
+      # キャッシュキーに実際のRustバージョンを含める
+      - name: Rust用のキャッシュ準備
+        id: cache-cargo-install # if 条件で使うために id を設定
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/
+          key: ${{ runner.os }}-cargo-install-${{ steps.rustc-version.outputs.version }}-${{ hashFiles('**/Cargo.lock') }}-${{ env.CARGO_TOOLS }}
+
+      - name: キャッシュがヒットしなかった場合にのみツールをインストール
+        if: steps.cache-cargo-install.outputs.cache-hit != 'true'
+        run: |
+          echo "${{ env.CARGO_TOOLS }}" | xargs -n 1 cargo install --locked
 
       - name: 最新リリースのshiroaをダウンロード
         run: |
