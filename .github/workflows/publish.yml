@@ -10,8 +10,7 @@ permissions:
   id-token: write  # OIDCトークンの権限（`deploy-pages`用）
 
 env:
-  CARGO_TOOLS: |
-    shiroa
+  CARGO_TOOLS: shiroa
 
 jobs:
   build:
@@ -43,7 +42,7 @@ jobs:
       - name: キャッシュがヒットしなかった場合にのみツールをインストール
         if: steps.cache-cargo-install.outputs.cache-hit != 'true'
         run: |
-          echo "${{ env.CARGO_TOOLS }}" | xargs -n 1 cargo install --locked
+          cargo install --git https://github.com/Myriad-Dreamin/shiroa --locked shiroa
 
       - name: 最新リリースのshiroaをダウンロード
         run: |
