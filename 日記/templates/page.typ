@@ -108,10 +108,8 @@
 .minimarimo3-embed-YT {
     width: 100% !important;
     height: 100% !important;
-    position: absolute;
+    position: static !important;
     z-index: 2;
-
-    /*position: static !important;*/
 }
 ```
 
