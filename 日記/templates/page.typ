@@ -29,7 +29,7 @@
 
 #let embedYT = (url, orig_width: 560, orig_height: 315) => {
   // 20ptはpageで設定したleftの値
-  let width = page-width
+  let width = (page-width - 20pt)
   let height = page-width * (orig_height / orig_width)
 
   // 操作不能になるバグを避けるためにカスタムcssを適用する必要があります
@@ -261,7 +261,7 @@
   // code block setting
   show: code-block-rules.with(..common, themes: themes, code-font: code-font)
 
-  outline(title: "目次")
+  // outline(title: "目次")
 
   repeat([.])
 
