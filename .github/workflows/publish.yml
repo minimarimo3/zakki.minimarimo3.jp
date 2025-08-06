@@ -21,8 +21,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 必要なツールのインストール
+        # apt updateは必須： https://docs.github.com/ja/actions/using-github-hosted-runners/using-github-hosted-runners/customizing-github-hosted-runners#:~:text=%E5%B8%B8%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84
         run: |
-          # https://docs.github.com/ja/actions/using-github-hosted-runners/using-github-hosted-runners/customizing-github-hosted-runners#:~:text=%E5%B8%B8%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84
           sudo apt update
           sudo apt install -y fonts-noto-cjk
 
@@ -41,22 +41,12 @@ jobs:
 
       - name: キャッシュがヒットしなかった場合にのみツールをインストール
         if: steps.cache-cargo-install.outputs.cache-hit != 'true'
-        run: |
-          cargo install --git https://github.com/Myriad-Dreamin/shiroa --locked shiroa
-
-      - name: 最新リリースのshiroaをダウンロード
-        run: |
-          # wget -q https://github.com/Myriad-Dreamin/shiroa/releases/latest/download/shiroa-x86_64-unknown-linux-gnu.tar.gz
-          # wget -q https://github.com/Myriad-Dreamin/shiroa/releases/download/v0.3.1-rc3/shiroa-x86_64-unknown-linux-gnu.tar.gz
-          # tar --totals -xzf shiroa-x86_64-unknown-linux-gnu.tar.gz
-          # sudo mv shiroa-x86_64-unknown-linux-gnu/shiroa /usr/local/bin/
-          cargo install --git https://github.com/Myriad-Dreamin/shiroa --locked shiroa
+        run: cargo install --git https://github.com/Myriad-Dreamin/shiroa --locked shiroa
 
       - name: book.typ ファイルの検索と処理
         run: |
           find . -name book.typ -execdir bash -c '
             set -eux
-            echo "book.typ found in $(pwd)"
             parent_dir=$(basename $(pwd))
             shiroa build --allowed-url-source ".*" --path-to-root "/$parent_dir/" --mode static-html;
             rm -rf "../public/$parent_dir";
@@ -67,9 +57,7 @@ jobs:
       - name: Pythonのセットアップ
         uses: actions/setup-python@v5
         with:
-          # https://github.com/actions/runner-images/issues/10636#:~:text=Ubuntu%2024.04%20image.-,Python,-3.7.*%20(cached)
-          # 3.13はキャッシュされていないため、3.12を使用
-          python-version: '3.12'
+          python-version: '3.13'
           cache: 'pip'
 
       # キャッシュが確実に効くようにバージョンを指定してある
