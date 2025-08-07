@@ -8,7 +8,10 @@
 ) = [
 #import "/book.typ": book-page
 
-#show: book-page.with(title: 執筆日.display("[year]年[month]月[day]日の日報"))
+#show: book-page.with(
+  title: 執筆日.display("[year]年[month]月[day]日の日報"),
+  description: "日報"
+)
 #set heading(numbering: none)
 
 = 今日やること
