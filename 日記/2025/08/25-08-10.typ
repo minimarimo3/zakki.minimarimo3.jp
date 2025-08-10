@@ -1,4 +1,4 @@
-#import "/new-template.typ": 日報
+#import "/template.typ": 日報
 #import "@preview/cheq:0.2.3": checklist
 #show: checklist
 

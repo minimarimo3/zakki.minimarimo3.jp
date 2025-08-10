@@ -1,30 +1,9 @@
-/*
-#import "/template.typ": 日報
-
-#show : 本文 => 日報(
-  執筆日: datetime(year: 2025, month: 08, day: 6),
-  今日やること: [
-
-  ],
-  今日やったこと: [
-
-  ],
-  今日あった嬉しかったこと: [
-
-  ],
-  明日やりたいこと: [
-
-  ],
-  その他: none
-)
-*/
-
 #import "@preview/shiroa:0.2.3": *
 
 #show: book
 
-#let n = (date, emoji: none) => {
-  return chapter(section: none, str(date) + ".typ", date + emoji)
+#let n = (path, title, emoji: none) => {
+  return chapter(section: none, path, title + emoji)
 }
 
 #book-meta(
@@ -33,10 +12,10 @@
   summary: [
     #prefix-chapter("index.typ")[これは何？]
     = 2025
-    #n("2025/目標")
+    #n("2025/目標.typ", "目標")
     == 8月
-    #n("2025/08/25-08-10")
-    #n("2025/08/25-08-08")
+    #n("2025/08/25-08-10.typ", "10")
+    #n("2025/08/25-08-08.typ", "08")
   ]
 )
 
