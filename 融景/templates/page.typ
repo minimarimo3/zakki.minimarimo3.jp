@@ -116,7 +116,7 @@
 /// The project function defines how your document looks.
 /// It takes your content and some metadata and formats it.
 /// Go ahead and customize it to your liking!
-#let project(title: "ﾐﾆﾏﾘﾓの雑記", description: none, authors: ("minimarimo3"), kind: "page", plain-body) = {
+#let project(title: "ﾐﾆﾏﾘﾓの雑記", description: "融景の開発メモ", authors: ("minimarimo3"), kind: "page", plain-body) = {
   // set basic document metadata
   set document(
     author: authors,
