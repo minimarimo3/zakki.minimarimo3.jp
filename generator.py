@@ -39,7 +39,7 @@ bibouroku_list = []
 for root, directory, filenames in os.walk("."):  # 現在のディレクトリを再帰的に探索
     if "dist" not in directory or "private" in filenames:
         continue
-    print(root)
+    print(f"{root}で作業中...")
 
     # README(概要)があるなら読み込む
     about = None
@@ -85,4 +85,3 @@ for root, last_modified, about in bibouroku_list:
 html_content = HTML_TEMPLATE_1 + "\n".join(links) + HTML_TEMPLATE_2
 with open("public/index.html", "w", encoding="utf-8") as html_file:
     html_file.write(html_content)
-
