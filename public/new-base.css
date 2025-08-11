@@ -134,17 +134,6 @@ main a:hover {
     justify-content: flex-start;
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    top: -40px; left: 50%;
-    transform: translateX(-50%);
-    width: 100px; height: 100px;
-    background: radial-gradient(circle at 60% 60%, var(--accent2) 0%, transparent 80%);
-    opacity: 0.10;
-    z-index: 0;
-    pointer-events: none;
-}
 .card h3 {
     margin-top: 0.2em;
     margin-bottom: 0.7em;
