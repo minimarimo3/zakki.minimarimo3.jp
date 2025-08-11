@@ -5,13 +5,14 @@
     --accent: #7C8AFF;
     --accent2: #A9B8FF;
     --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.27);
-    --card-border: 1.5px solid rgba(120,130,170,0.10);
+    --card-border: 1.5px solid rgba(120, 130, 170, 0.10);
     --radius: 20px;
     --header-footer-bg: #1B1D1F;
     --font-main: 'Segoe UI', 'Arial', sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -35,7 +36,7 @@ body {
 header {
     width: 100vw;
     background: var(--header-footer-bg);
-    box-shadow: 0 2px 14px rgba(0,0,0,0.18);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
     border-bottom-left-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
     margin-bottom: 36px;
@@ -69,11 +70,13 @@ header .nav a::after {
     width: 0%;
     height: 2px;
     background: var(--accent);
-    transition: width 0.24s cubic-bezier(.4,1.8,.6,1);
+    transition: width 0.24s cubic-bezier(.4, 1.8, .6, 1);
 }
+
 header .nav a:hover {
     color: #fff;
 }
+
 header .nav a:hover::after {
     width: 80%;
 }
@@ -89,6 +92,7 @@ main a {
     color: #A9B8FF;
     transition: color 0.18s;
 }
+
 main a:hover {
     color: #fff;
     text-decoration: underline;
@@ -122,10 +126,9 @@ main a:hover {
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
     padding: 2.3em 1.4em 2em 1.4em;
-    transition: 
-        box-shadow 0.25s cubic-bezier(.4,1.8,.6,1),
-        transform 0.19s cubic-bezier(.5,1.4,.8,1.2),
-        background 0.18s;
+    transition:
+        box-shadow 0.25s cubic-bezier(.4, 1.8, .6, 1),
+        transform 0.19s cubic-bezier(.5, 1.4, .8, 1.2);
     position: relative;
     overflow: hidden;
     min-height: 170px;
@@ -140,21 +143,23 @@ main a:hover {
     font-size: 1.22em;
     color: #fff;
     font-weight: 600;
-    text-shadow: 0 2px 12px rgba(80,80,120,0.12);
+    text-shadow: 0 2px 12px rgba(80, 80, 120, 0.12);
     z-index: 1;
     letter-spacing: 0.01em;
 }
+
 .card p {
     margin: 0.65em 0 0 0;
     color: #D2D5E0;
     font-size: 1.01em;
     z-index: 1;
 }
+
 .card time {
     color: var(--accent);
     font-size: 0.97em;
     font-weight: 500;
-    background: rgba(90,100,140,0.09);
+    background: rgba(90, 100, 140, 0.09);
     padding: 2px 8px;
     border-radius: 6px;
     margin-left: 4px;
@@ -162,7 +167,7 @@ main a:hover {
 
 .card:hover {
     transform: translateY(-7px) scale(1.025);
-    box-shadow: 0 12px 38px 0 rgba(40,40,60,0.23), 0 1.5px 9px 0 rgba(20,20,30,0.10);
+    box-shadow: 0 12px 38px 0 rgba(40, 40, 60, 0.23), 0 1.5px 9px 0 rgba(20, 20, 30, 0.10);
     background: rgba(40, 42, 55, 0.93);
 }
 
@@ -181,7 +186,7 @@ footer {
     font-size: 1em;
     letter-spacing: 0.03em;
     margin-top: 38px;
-    box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.08);
     z-index: 100;
     border-top: 1.5px solid #23272B;
 }
@@ -192,6 +197,7 @@ footer a {
     margin: 0 10px;
     transition: color 0.18s;
 }
+
 footer a:hover {
     color: #fff;
     text-decoration: underline;
@@ -202,6 +208,7 @@ main ul {
     padding-left: 1.4em;
     margin: 16px 0;
 }
+
 main ul li {
     margin: 7px 0;
     font-size: 1.11em;
@@ -211,37 +218,49 @@ main ul li {
     width: 10px;
     background: #181A1B;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #23272B;
     border-radius: 8px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #33394A;
 }
 
 @media (max-width: 900px) {
-    header, footer {
+
+    header,
+    footer {
         padding: 15px 0 11px 0;
     }
+
     main {
         width: 98%;
     }
+
     .cards {
         gap: 1.3em;
     }
 }
+
 @media (max-width: 600px) {
-    header, footer {
+
+    header,
+    footer {
         border-radius: 0;
     }
+
     .cards {
         grid-template-columns: 1fr;
         gap: 1em;
     }
+
     .card {
         padding: 1.2em 0.7em 1.2em 0.7em;
         min-height: 120px;
     }
+
     main {
         margin: 0;
         width: 100%;
