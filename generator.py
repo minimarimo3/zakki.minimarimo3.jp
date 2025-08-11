@@ -37,7 +37,7 @@ HTML_TEMPLATE_2 = r"""
 # PDFファイル一覧を取得（ファイルパスと更新日時のタプルのリスト）
 bibouroku_list = []
 for root, directory, filenames in os.walk("."):  # 現在のディレクトリを再帰的に探索
-    if "dist" not in directory:
+    if "dist" not in directory or "private" in filenames:
         continue
     print(root)
 
