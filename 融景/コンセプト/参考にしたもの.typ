@@ -68,5 +68,3 @@ DSL作成の参考になると思う。
 #embedYT("https://www.youtube.com/embed/t5U0rrj0dio?si=fHxP3saVRKNN5fHo")
 
 = 書籍
-
-#bibliography("ref.yaml")
