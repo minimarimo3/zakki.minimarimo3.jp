@@ -118,6 +118,10 @@ footer {
     text-decoration: underline;
 }
 
+.card::before {
+    display: none;
+}
+
 .card {
     background-color: #4c4c4c;
     border: 1px solid #ddd;
