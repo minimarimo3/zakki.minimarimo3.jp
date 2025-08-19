@@ -38,14 +38,17 @@
   description: "ただの日記",
   summary: [
     #prefix-chapter("index.typ")[これは何？]
+    = 雑記
+    #chapter("雑記/BL規制/BL規制.typ")[BL規制]
     = 2025
     #chapter("2025/目標.typ", "目標")
     == 8月
+    #n("2025/08/25-08-19.typ")
     #n("2025/08/25-08-10.typ")
     #n("2025/08/25-08-08.typ")
   ]
 )
 
 // re-export page template
-#import "/templates/page.typ": project, embedYT
+#import "/templates/page.typ": project, embedYT, TODO
 #let book-page = project
