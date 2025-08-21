@@ -28,7 +28,7 @@
     month: int(date-a.at(1)),
     day: int(date-a.at(2))
   )
-  let title = date.display("[day padding:zero]") + "（今月残り" + str(100 * date.day() / get-last-day-of-month(date.year(), date.month())).slice(0, 2) + "％）"
+  let title = date.display("[day padding:zero]") + "（今月" + str(100 * date.day() / get-last-day-of-month(date.year(), date.month())).slice(0, 2) + "％消費済み）"
 
   return chapter(section: none, path, title)
 }
@@ -43,7 +43,7 @@
     = 2025
     #chapter("2025/目標.typ", "目標")
     == 8月
-    #n("2025/08/25-08-19.typ")
+    #n("2025/08/25-08-21.typ")
     #n("2025/08/25-08-10.typ")
     #n("2025/08/25-08-08.typ")
   ]
