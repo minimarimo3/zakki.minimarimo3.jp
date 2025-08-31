@@ -3,7 +3,7 @@
 #show: checklist
 
 #show : 本文 => 日報(
-  執筆日: datetime(year: 2025, month: 08, day: ),
+  執筆日: datetime(year: 2025, month: 09, day: ),
   今日やる・やったこと: [
     - [ ] 
   ],
