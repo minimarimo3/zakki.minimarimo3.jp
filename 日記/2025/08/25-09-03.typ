@@ -7,11 +7,27 @@
   今日やる・やったこと: [
     - [x] タグによる検索
     - [x] 詳細画面で上にスワイプすると一覧画面に戻る
-    - [ ] フォルダ機能の追加
-      - [ ] フォルダで特定のタグがついた画像を見る
-      - [ ] フォルダを新規作成（名前をつける、画像を追加する）
+    - [x] フォルダ機能の追加
+      - [x] フォルダで特定のタグがついた画像を見る
+      - [x] フォルダを新規作成（名前をつける、画像を追加する、画像の登録を解除する）
 
     - [ ] （可能なら）ちゃんとした画像解析
+
+      #link("https://huggingface.co/Camais03/camie-tagger-v2/tree/main")[camie-tagger-v2]が出たらしい。
+      使ってみる
+
+        ↑やってはいるんだがやっぱりどうにも動かない。
+        毎回
+        ```
+Select TensorFlow op(s), included in the given model, is(are) not supported by this interpreter.
+Make sure you apply/link the Flex delegate before inference.
+For the Android, it can be resolved by adding "org.tensorflow:tensorflow-lite-select-tf-ops" dependency.
+See instructions: https://www.tensorflow.org/lite/guide/ops_select
+        ```
+        と言われる。
+        Android StudioのBuild > Analyze APKから共有ライブラリも確認したけどちゃんとあるし・・・
+        結局`onnx2tf -i camie-tagger-v2_simplified.onnx -o camie_tf_fp16_builtin -b 1 -ois "input:1,3,512,512" -rtpo Erf Gelu -eatfp16`することでそもそもSelect TF Opsを出さないという線で行こうとしているっぽい。
+        お！！！！！！この方法でとりあえず動きはしたぞ！！！あとは結果だな。これでmonochromeとか出たら本当にしんどいがw
   ],
   今日あった嬉しかったこと: [
   ],
@@ -22,8 +38,14 @@
 
     === 機能
     ==== やる
-    - [ ] タグによる絞り込みの実装
+    - [x] タグによる絞り込みの実装
     - [ ] AIによるまともなタグづけ
+    - [ ] アプリのサムネイルを削除するボタン（アルバムのサムネイル生成で使用しているから多くなるようなら消す）
+    - [ ] 開発者のサポート
+
+      100, 300, 500円の課金できるようにしよう。
+      機能はどれも同じで、500円出したらサポーターとして乗っけられるようなやつ。
+
     ==== 有料系
     - [ ] 重複した画像の検知
     - [ ] ファイルの転送機能（piping server）
@@ -34,6 +56,13 @@
 
       改善可能かは分からない。
       初回起動時と列の切り替え時には一回全部のキャッシュを読み込むようにするようにしてもいいかも。
+
+      これ、デバッグ用ビルドだからかもしれない。
+      `flutter install android`したら結構軽かった。
+
+    - [ ] ダウンロード失敗時にエラーを通知する
+
+      てか今GitHub Releaseを使ってるけど、onnxを使うならそもそもHFから取ってこれるのでは？
 
     - [ ] 設定画面をより見やすく
 
