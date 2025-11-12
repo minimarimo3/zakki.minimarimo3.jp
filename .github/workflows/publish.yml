@@ -20,11 +20,14 @@ jobs:
       - name: リポジトリのチェックアウト
         uses: actions/checkout@v4
 
-      - name: 必要なツールのインストール
+      - name: Aptパッケージの更新とNotoフォントのインストール
         # apt updateは必須： https://docs.github.com/ja/actions/using-github-hosted-runners/using-github-hosted-runners/customizing-github-hosted-runners#:~:text=%E5%B8%B8%E3%81%AB%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84
         run: |
           sudo apt update
           sudo apt install -y fonts-noto-cjk
+
+      - name: Rustのセットアップ
+        uses: dtolnay/rust-toolchain@stable
 
       # 実際に使われるRustのバージョンを取得して、後のステップで使えるようにする
       - name: Rustのバージョンを取得
