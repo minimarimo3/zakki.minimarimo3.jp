@@ -34,13 +34,21 @@ jobs:
         id: rustc-version
         run: echo "version=$(rustc --version)" >> $GITHUB_OUTPUT
 
-      # キャッシュキーに実際のRustバージョンを含める
-      - name: Rust用のキャッシュ準備
-        id: cache-cargo-install # if 条件で使うために id を設定
+      - name: cargo-installツールのキャッシュ準備
+        id: cache-cargo-install
         uses: actions/cache@v4
         with:
-          path: ~/.cargo/
-          key: ${{ runner.os }}-cargo-install-${{ steps.rustc-version.outputs.version }}-${{ hashFiles('**/Cargo.lock') }}-${{ env.CARGO_TOOLS }}
+          # pathをcargo installが利用するディレクトリに限定する
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+          # keyから 'hashFiles' を削除し、ツール名とRustバージョンに依存させる
+          key: ${{ runner.os }}-cargo-install-${{ steps.rustc-version.outputs.version }}-${{ env.CARGO_TOOLS }}
+          # 厳密なキーがなくても、Rustバージョンが一致すれば復元を試みる
+          restore-keys: |
+            ${{ runner.os }}-cargo-install-${{ steps.rustc-version.outputs.version }}-
 
       - name: キャッシュがヒットしなかった場合にのみツールをインストール
         if: steps.cache-cargo-install.outputs.cache-hit != 'true'
