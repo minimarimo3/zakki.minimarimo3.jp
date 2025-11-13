@@ -14,7 +14,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
 
     steps:
       - name: リポジトリのチェックアウト
@@ -25,9 +25,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y fonts-noto-cjk
-
-      - name: Rustのセットアップ
-        uses: dtolnay/rust-toolchain@stable
 
       # 実際に使われるRustのバージョンを取得して、後のステップで使えるようにする
       - name: Rustのバージョンを取得
